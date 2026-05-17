@@ -8,10 +8,10 @@ hassio_api: false
 auth_api: false
 ingress: false
 
-url: "https://www.mymediaforalexa.com"
+url: "https://www.mymediaalexa.com"
 
 # Multi-architecture Docker Hub image (manifest created by 21-publish-docker-latest.sh)
-image: "bizmodeller/mymediaforalexa"
+# image: "bizmodeller/mymediaforalexa"  ← REMOVED: Forces local build from Dockerfile
 
 # Supported architectures
 arch:
@@ -30,12 +30,11 @@ ports_description:
   52050/tcp: "My Media for Alexa HTTP port"
   52051/tcp: "My Media for Alexa HTTPS port"
 
-# Persistent storage
+# Persistent storage mapping
 map:
-  - type: bind
-    source: /share/mymedia/medialibrary
-    target: /medialibrary
-    read_only: false
+  - type: media
+    path: /medialibrary
+    read_only: true
 
 # Environment variables
 options:
